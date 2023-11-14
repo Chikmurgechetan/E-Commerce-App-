@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Nav, NavLink, Navbar } from "react-bootstrap";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CartContext from "../Context/CartContext";
 
 const Header = () => {
+  const ctx = useContext(CartContext);
+
+  const cartHandler  = () =>{
+    ctx.setModalVisability(true);
+  }
+
   return (
     <>
       <Navbar
@@ -19,6 +26,7 @@ const Header = () => {
             <NavLink href="#">ABOUT</NavLink>
           </Nav>
           <Button
+            onClick={cartHandler}
             variant="outline-warning"
             style={{ position: "absolute", right: 18 }}
           >
