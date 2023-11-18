@@ -9,7 +9,7 @@ const CartModel = (props) => {
       <Modal
         show={ctx.modalVisabiilty}
         onHide={() => ctx.setModalVisability(false)}
-        style={{ marginTop: "3rem", marginLeft: "20rem",overflow:'scroll' }}
+        style={{ marginTop: "3rem", marginLeft: "20rem", overflow: "scroll" }}
       >
         <Modal.Header
           closeButton
@@ -18,6 +18,7 @@ const CartModel = (props) => {
             fontFamily: "revert",
             fontWeight: "bold",
             fontSize: "1.4rem",
+            textDecorationLine: "underline ",
           }}
         >
           My Cart
@@ -28,7 +29,6 @@ const CartModel = (props) => {
             variant="danger"
             onClick={() => ctx.setModalVisability(false)}
           >
-            
             Close
           </Button>
         </Modal.Footer>

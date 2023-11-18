@@ -1,51 +1,51 @@
-import React from "react";
-import { Container, Row } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Container, Row } from "react-bootstrap";
 import CartModel from "../UI/CartModal";
-import CartItems from "./Carttems";
+import CartItems  from './Carttems';
+import CartContext from "../Context/CartContext";
 
 const Cart = () => {
-  const cartElements = [
-    {
-      id: "c1",
-      title: "Colors",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-      quantity: 2,
-    },
-    {
-      id: "c2",
-      title: "Black and white Colors",
-      price: 50,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-      quantity: 3,
-    },
-    {
-      id: "c3",
-      title: "Yellow and Black Colors",
-      price: 70,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-      quantity: 1,
-    },
-  ];
+  const ctx = useContext(CartContext);
+
+  // Calculate the total Amount
+  const totalAmount = `${ctx.totalAmount.toFixed(2)}`;
+
+  const removeItemHandler = (productId, productPrice) => {
+    // Call the removeItem function from CartContext
+    ctx.removeCartItems(productId, productPrice);
+  };
+
+  const purchaseHandler = () =>{
+    ctx.purchase();
+    alert("Thankyou for Purchase!");
+  }
+
+ 
+  const cartElements = ctx.cartItems.map((product) => {
+    return (
+      <CartItems
+        key={product.id}
+        product={product}
+        remmovItem={removeItemHandler}
+      />
+    );
+  });
 
   return (
     <CartModel>
+      <header style={{ fontWeight: "bold" }}>
+        <span style={{ marginLeft: "1.5rem" }}>ITEM</span>
+        
+        <span style={{ marginLeft: "5rem" }}>PRICE</span>
+        <span style={{ marginLeft: "4.5rem" }}> QUANTITY</span>
+      
+      </header>
       <Container>
-        <Row>
-         {
-          cartElements.map((product)=>{
-            return <CartItems key={product.id} product={product}/>
-          })
-         }
-        </Row>
-        <div>
-          <hr />
-          <h5>Total Amount</h5>
-          <h5>Rs. 555</h5>
+        <Row>{cartElements}</Row>
+        <div style={{ marginLeft: "18rem" }}>
+          <h5> Total Rs:- {totalAmount}</h5>
         </div>
+        <Button onClick={purchaseHandler}>Purchase</Button>
       </Container>
     </CartModel>
   );

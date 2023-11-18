@@ -6,7 +6,7 @@ const Products = () => {
   const ProductArray = [
     {
       id: "P1",
-      head: "Alubm 1",
+      head: "Album 1",
       title: "Colors",
       price: 100,
       imageUrl:
@@ -14,7 +14,7 @@ const Products = () => {
     },
     {
       id: "P2",
-      head: "Alubam 2",
+      head: "Album 2",
       title: "Black and white Colors",
       price: 50,
       imageUrl:
@@ -22,7 +22,7 @@ const Products = () => {
     },
     {
       id: "P3",
-      head: "Alubam 3",
+      head: "Album 3",
       title: "Yellow and Black Colors",
       price: 70,
       imageUrl:
@@ -30,7 +30,7 @@ const Products = () => {
     },
     {
       id: "P4",
-      head: "Alubam 4",
+      head: "Album 4",
       title: "Blue Color",
       price: 100,
       imageUrl:
