@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { Button, Nav, NavLink, Navbar } from "react-bootstrap";
+import { Button, Nav,  NavLink,Navbar } from "react-bootstrap";
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import CartContext from "../Context/CartContext";
-import { useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 
 const Header = () => {
   const ctx = useContext(CartContext);
@@ -35,6 +36,7 @@ const Header = () => {
             <NavLink href="/Home">HOME</NavLink>
             <NavLink href="/">STORE</NavLink>
             <NavLink href="/About">ABOUT</NavLink>
+            <NavLink href="/Contact">CONTACT</NavLink>
           </Nav>
           {isStoreRoute() && (
           <Button
