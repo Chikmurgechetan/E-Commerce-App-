@@ -32,7 +32,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto" style={{fontWeight:'bold',color:'white',fontFamily:'inherit'}}>
-            <NavLink href="#">HOME</NavLink>
+            <NavLink href="/Home">HOME</NavLink>
             <NavLink href="/">STORE</NavLink>
             <NavLink href="/About">ABOUT</NavLink>
           </Nav>

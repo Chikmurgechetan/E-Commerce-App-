@@ -4,6 +4,7 @@ import Products from "./Components/Products/Products";
 import Cart from "./Components/Cart/Cart";
 import { Route, Routes} from "react-router-dom";
 import AboutPage from "./Components/Pages/About";
+import HomePage from "./Components/Pages/Home";
 
 
 
@@ -18,6 +19,7 @@ function App() {
        <Routes>
         <Route path="/" element={<Products/>} />
         <Route path="/About" element={<AboutPage/>} />
+        <Route path="/Home" element={<HomePage/>} />
         
        </Routes>
        <Cart />
