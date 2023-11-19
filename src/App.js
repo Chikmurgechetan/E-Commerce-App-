@@ -6,6 +6,7 @@ import { Route, Routes} from "react-router-dom";
 import AboutPage from "./Components/Pages/About";
 import HomePage from "./Components/Pages/Home";
 import ContactUs from "./Components/Pages/Contact";
+import ProductDetails from "./Components/Products/ProductDetails";
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/About" element={<AboutPage/>} />
         <Route path="/Home" element={<HomePage/>} />
         <Route path="/Contact" element={<ContactUs />} />
+        <Route path="/products/:id" element={<ProductDetails/>}/>
         
        </Routes>
        <Cart />

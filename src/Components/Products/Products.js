@@ -1,63 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductItem from "./ProductItem";
 import { Row } from "react-bootstrap";
+import CartContext from "../Context/CartContext";
 
 const Products = () => {
-  const ProductArray = [
-    {
-      id: "P1",
-      head: "Album 1",
-      title: "Colors",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    },
-    {
-      id: "P2",
-      head: "Album 2",
-      title: "Black and white Colors",
-      price: 50,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    },
-    {
-      id: "P3",
-      head: "Album 3",
-      title: "Yellow and Black Colors",
-      price: 70,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    },
-    {
-      id: "P4",
-      head: "Album 4",
-      title: "Blue Color",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-    },
-  ];
+  const ctx = useContext(CartContext);
 
-  return(
-       <>
-        <h1 style={{
+  return (
+    <>
+      <h1
+        style={{
           fontSize: "30px",
           textAlign: "center",
           padding: "20px",
-          fontFamily:'serif',
+          fontFamily: "serif",
           fontWeight: "bold",
-    
-        }}>MUSIC</h1>
-       <Row  className="no-gutters"  style={{marginLeft:'12rem' , marginTop:'2rem'}}>
-       {
-        ProductArray.map((product)=>{
-            return <ProductItem key={product.id} product={product}/>
-        })
-       }
-       </Row>
-      </>
-  ) 
-    
- 
+        }}
+      >
+        MUSIC
+      </h1>
+      <Row
+        className="no-gutters"
+        style={{ marginLeft: "12rem", marginTop: "2rem" }}
+      >
+        {ctx.productsList.map((product) => {
+          return <ProductItem key={product.id} product={product} />;
+        })}
+      </Row>
+    </>
+  );
 };
 export default Products;

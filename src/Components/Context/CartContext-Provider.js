@@ -1,5 +1,53 @@
 import React, { useReducer, useState } from "react";
 import CartContext from "./CartContext";
+import BlackShirt from "../Assets/Black s.jpg";
+import SmartWatch from "../Assets/SmartWatch.jpg";
+import Jeans from "../Assets/jeans.jpg";
+import Shoes from "../Assets/Shoes.jpg";
+
+const ProductArray = [
+  {
+    id: "p1",
+    title: "Product 1",
+    price: 1200,
+    brand: "Boat",
+    color: "Black",
+    discription:
+      "A Good Smart Watch In this world Indian famius brand smart Watch",
+    imageSrc: SmartWatch,
+  },
+  {
+    id: "p2",
+    title: "Product 2",
+    price: 500,
+    brand: "Shirt Beffole",
+    color: "Black",
+    discription:
+      "I Like This Brand Shirt On the My body  for a good Color Quality",
+    imageSrc: BlackShirt,
+  },
+
+  {
+    id: "p3",
+    title: "Product 3",
+    price: 700,
+    brand: "Tomy Jeans",
+    color: "Black Gray Dark",
+    discription:
+      "I like This fitting of the t shirt i love this one size and the color is awsome",
+    imageSrc: Jeans,
+  },
+  {
+    id: "p4",
+    title: "Product 4",
+    price: 1000,
+    brand: "Nice One",
+    color: "Gray light Color",
+    discription:
+      "I like This fitting of the t shoes i love this one size and the color is awsome",
+    imageSrc: Shoes,
+  },
+];
 
 const defaultCartState = {
   cartItems: [],
@@ -40,11 +88,16 @@ const cartReducer = (state, action) => {
     let updatedCartItems;
 
     if (existingCartItem.quantity > 1) {
-      const updatedItem = { ...existingCartItem, quantity: existingCartItem.quantity - 1 };
+      const updatedItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity - 1,
+      };
       updatedCartItems = [...state.cartItems];
       updatedCartItems[existingCartItemIndex] = updatedItem;
     } else {
-      updatedCartItems = state.cartItems.filter((item) => item.id !== action.id);
+      updatedCartItems = state.cartItems.filter(
+        (item) => item.id !== action.id
+      );
     }
 
     return {
@@ -57,7 +110,7 @@ const cartReducer = (state, action) => {
       totalAmount: 0,
     };
   }
-  
+
   // If the action type is not recognized, return the current state
   return state;
 };
@@ -81,15 +134,16 @@ const ContextProvider = (props) => {
     dispatchCartAction({ type: "PURCHASE" });
   };
 
-
   const objValue = {
+    productsList: ProductArray,
     modalVisabiilty: modalVisabiilty,
     setModalVisability: setModalVisability,
     cartItems: cartState.cartItems,
     totalAmount: cartState.totalAmount,
     addCartItems: addItemToCartHandler,
     removeCartItems: removeItemFromCartHandler,
-    purchase:purchaseHandler
+    purchase: purchaseHandler,
+    // productsList: cartState. productsList,
   };
 
   return (

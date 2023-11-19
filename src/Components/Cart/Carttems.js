@@ -19,7 +19,7 @@ const CartItems = (props) => {
         }}
       >
         <Col xs={3}>
-          <Image src={props.product.imageUrl} fluid />
+          <Image src={props.product.imageSrc} fluid />
           <p style={{fontWeight:'bold'}}>{props.product.head}</p>
         </Col>
         <Col xs={4}>

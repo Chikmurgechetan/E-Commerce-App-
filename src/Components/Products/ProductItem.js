@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { Button, Card, CardHeader, CardImg, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import CartContext from "../Context/CartContext";
 
 const ProductItem = (props) => {
   const cartCtx = useContext(CartContext);
+  const { id } = props.product;
+  
+  
   const addToCartHandler = (event) => {
     event.preventDefault();
-
-    const existingCartItem = cartCtx.cartItems.find(
+  const existingCartItem = cartCtx.cartItems.find(
       (item) => item.id === props.product.id
     );
 
@@ -19,8 +22,8 @@ const ProductItem = (props) => {
 
       cartCtx.addCartItems({
         id: props.product.id,
-        head:props.product.head,
-        imageUrl: props.product.imageUrl,
+        head: props.product.title,
+        imageSrc: props.product.imageSrc,
         price: props.product.price,
         quantity: 1,
       });
@@ -31,14 +34,17 @@ const ProductItem = (props) => {
     <Col md="6" className="mb-4" style={{ margin: "0rem" }}>
       <Card style={{ width: "15rem", margin: "1rem" }}>
         <CardHeader style={{ textAlign: "center", fontWeight: "bold" }}>
-          {props.product.head}
+          {props.product.title}
         </CardHeader>
-        <CardImg
-          src={props.product.imageUrl}
-          style={{ height: "12rem", objectFit: "cover" }}
-        />
+        <Link to={`/products/${id}`} style={{ color: "black" }}>
+          <CardImg
+            src={props.product.imageSrc}
+            style={{ height: "12rem", objectFit: "contain" }}
+          />
+        </Link>
+
         <Card.Body>
-          <Card.Title>{props.product.title}</Card.Title>
+          <Card.Title>{props.product.brand}</Card.Title>
           <div
             style={{
               display: "flex",

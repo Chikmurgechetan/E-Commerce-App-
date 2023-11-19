@@ -1,6 +1,7 @@
 import React from "react";
 
 const CartContext = React.createContext({
+  productsList :[],
   modalVisabiilty: false,
   setModalVisability: () => {},
   cartItems: [],
@@ -8,5 +9,7 @@ const CartContext = React.createContext({
   addCartItems: () => {},
   removeCartItems: () => {},
   purchase: () => {},
+  
+ 
 });
 export default CartContext;
