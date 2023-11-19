@@ -17,7 +17,7 @@ const Products = () => {
           fontWeight: "bold",
         }}
       >
-        MUSIC
+        PRODUTS
       </h1>
       <Row
         className="no-gutters"

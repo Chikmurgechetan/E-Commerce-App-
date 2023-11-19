@@ -1,16 +1,26 @@
 import React, { useContext } from "react";
 import { Button, Card, CardHeader, CardImg, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartContext from "../Context/CartContext";
+import AuthoContext from "../Context/Autho-Context";
 
 const ProductItem = (props) => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthoContext);
+  const navigate = useNavigate();
+
   const { id } = props.product;
-  
-  
+
   const addToCartHandler = (event) => {
     event.preventDefault();
-  const existingCartItem = cartCtx.cartItems.find(
+
+    if (!authCtx.isLoggedIn) {
+      // If user is not logged in, navigate to the login page
+      navigate("/login");
+      return;
+    }
+
+    const existingCartItem = cartCtx.cartItems.find(
       (item) => item.id === props.product.id
     );
 

@@ -3,18 +3,23 @@ import { Button, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartContext from "../Context/CartContext";
+import AuthoContext from "../Context/Autho-Context";
 
 const Header = () => {
   const ctx = useContext(CartContext);
-
+  const authCtx = useContext(AuthoContext);
   const numberOfCartQuantity = ctx.cartItems.reduce((currNumber, item) => {
     return currNumber + item.quantity;
   }, 0);
 
   const cartHandler = () => {
     ctx.setModalVisability(true);
+    ctx.setCartVisibility(!ctx.cartVisibility);
   };
 
+  const LogoutHandler = () => {
+    authCtx.logout();
+  };
   // Function to check if the current route is the store route
 
   return (
@@ -64,14 +69,40 @@ const Header = () => {
               CONTACT
             </Nav.Link>
           </Nav>
+          {!authCtx.isLoggedIn && (
+            <Nav>
+              <Nav.Link
+                as={Link}
+                to="/login"
+                style={{
+                  fontSize: "1.5rem",
+                  color: "blue",
+                  marginLeft: "33rem",
+                }}
+              >
+                LOGIN
+              </Nav.Link>
+            </Nav>
+          )}
 
-          <Button
-            onClick={cartHandler}
-            variant="outline-warning"
-            style={{ position: "absolute", right: 18 }}
-          >
-            <ShoppingCartIcon />- CART - {numberOfCartQuantity}
-          </Button>
+          {authCtx.isLoggedIn && (
+            <Button
+              variant=""
+              style={{ fontSize: "1.2rem", color: "red", marginLeft: "33rem" }}
+              onClick={LogoutHandler}
+            >
+              LOGOUT
+            </Button>
+          )}
+          {authCtx.isLoggedIn && (
+            <Button
+              onClick={cartHandler}
+              variant="outline-warning"
+              style={{ position: "absolute", right: 18 }}
+            >
+              <ShoppingCartIcon />- CART - {numberOfCartQuantity}
+            </Button>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </>

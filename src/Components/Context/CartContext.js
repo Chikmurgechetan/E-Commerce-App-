@@ -9,6 +9,8 @@ const CartContext = React.createContext({
   addCartItems: () => {},
   removeCartItems: () => {},
   purchase: () => {},
+  cartVisibility: false,
+  setCartVisibility: () => {},
   
  
 });

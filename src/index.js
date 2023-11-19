@@ -6,17 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ContextProvider from "./Components/Context/CartContext-Provider";
 import { BrowserRouter } from "react-router-dom";
+import { AuthContextProvider } from "./Components/Context/Autho-Context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <ContextProvider>
-    <App />
-  </ContextProvider>
+    <AuthContextProvider>
+      <ContextProvider>
+        <App />
+      </ContextProvider>
+    </AuthContextProvider>
   </BrowserRouter>
-
 );
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

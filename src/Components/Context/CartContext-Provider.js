@@ -117,6 +117,7 @@ const cartReducer = (state, action) => {
 
 const ContextProvider = (props) => {
   const [modalVisabiilty, setModalVisability] = useState(false);
+  const [cartVisibility, setCartVisibility] = useState(false);
 
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
@@ -143,7 +144,10 @@ const ContextProvider = (props) => {
     addCartItems: addItemToCartHandler,
     removeCartItems: removeItemFromCartHandler,
     purchase: purchaseHandler,
-    // productsList: cartState. productsList,
+    cartVisibility:cartVisibility,
+    setCartVisibility:setCartVisibility,
+  
+   
   };
 
   return (
