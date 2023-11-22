@@ -8,8 +8,8 @@ import AuthoContext from "../Context/Autho-Context";
 const Header = () => {
   const ctx = useContext(CartContext);
   const authCtx = useContext(AuthoContext);
-  const numberOfCartQuantity = ctx.cartItems.reduce((currNumber, item) => {
-    return currNumber + item.quantity;
+   const numberOfCartQuantity = ctx.cartItems.reduce((currNumber, item) => {
+     return currNumber + item.quantity;
   }, 0);
 
   const cartHandler = () => {
@@ -100,8 +100,8 @@ const Header = () => {
               variant="outline-warning"
               style={{ position: "absolute", right: 18 }}
             >
-              <ShoppingCartIcon />- CART - {numberOfCartQuantity}
-            </Button>
+              <ShoppingCartIcon />- The Cart {numberOfCartQuantity};
+             </Button>
           )}
         </Navbar.Collapse>
       </Navbar>

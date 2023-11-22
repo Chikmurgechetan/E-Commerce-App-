@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import CartContext from "./CartContext";
 import BlackShirt from "../Assets/Black s.jpg";
 import SmartWatch from "../Assets/SmartWatch.jpg";
@@ -110,7 +110,6 @@ const cartReducer = (state, action) => {
       totalAmount: 0,
     };
   }
-
   // If the action type is not recognized, return the current state
   return state;
 };
@@ -135,6 +134,61 @@ const ContextProvider = (props) => {
     dispatchCartAction({ type: "PURCHASE" });
   };
 
+  const email = localStorage.getItem("email");
+  const updatedEmail = email ? email.replace("@", "").replace(".", "") : "";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `https://e-commerce-http-dfa65-default-rtdb.firebaseio.com/${updatedEmail}/cart.json`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data from Firebase");
+        }
+
+        // Handle the fetched data
+        const fetchedData = await response.json();
+
+        for (const key in fetchedData) {
+          const product = fetchedData[key];
+
+          
+
+          dispatchCartAction({ type: "ADD", item: product });
+        }
+      } catch (error) {
+        console.error("Error fetching data from Firebase:", error);
+      }
+    };
+
+    fetchData(); // Call the fetchData function
+  }, [updatedEmail]);
+
+  const updateTocart = async () => {
+    try {
+      const response = await fetch(
+        `https://e-commerce-http-dfa65-default-rtdb.firebaseio.com/${updatedEmail}/cart.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ cartState: cartState.cartItems }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update cart data in Firebase");
+      }
+    } catch (error) {
+      console.error("Error updating data to Firebase:", error);
+    }
+  };
+  useEffect(() => {
+    updateTocart();
+  }, [cartState, updatedEmail]);
+
   const objValue = {
     productsList: ProductArray,
     modalVisabiilty: modalVisabiilty,
@@ -144,10 +198,8 @@ const ContextProvider = (props) => {
     addCartItems: addItemToCartHandler,
     removeCartItems: removeItemFromCartHandler,
     purchase: purchaseHandler,
-    cartVisibility:cartVisibility,
-    setCartVisibility:setCartVisibility,
-  
-   
+    cartVisibility: cartVisibility,
+    setCartVisibility: setCartVisibility,
   };
 
   return (

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import CartModel from "../UI/CartModal";
-import CartItems  from './Carttems';
+import CartItems from "./CartItem";
 import CartContext from "../Context/CartContext";
 
 const Cart = () => {
@@ -15,12 +15,11 @@ const Cart = () => {
     ctx.removeCartItems(productId, productPrice);
   };
 
-  const purchaseHandler = () =>{
+  const purchaseHandler = () => {
     ctx.purchase();
     alert("Thankyou for Purchase!");
-  }
+  };
 
- 
   const cartElements = ctx.cartItems.map((product) => {
     return (
       <CartItems
@@ -35,10 +34,9 @@ const Cart = () => {
     <CartModel>
       <header style={{ fontWeight: "bold" }}>
         <span style={{ marginLeft: "1.5rem" }}>ITEM</span>
-        
+
         <span style={{ marginLeft: "5rem" }}>PRICE</span>
         <span style={{ marginLeft: "4.5rem" }}> QUANTITY</span>
-      
       </header>
       <Container>
         <Row>{cartElements}</Row>

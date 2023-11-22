@@ -11,11 +11,13 @@ const ProductItem = (props) => {
 
   const { id } = props.product;
 
+  
+
   const addToCartHandler = (event) => {
     event.preventDefault();
 
     if (!authCtx.isLoggedIn) {
-      // If user is not logged in, navigate to the login page
+      // If the user is not logged in, navigate to the login page
       navigate("/login");
       return;
     }
@@ -25,18 +27,22 @@ const ProductItem = (props) => {
     );
 
     if (existingCartItem) {
-      //item already is in the cart!
+      // Item already is in the cart!
       alert("The item is already in the cart!");
     } else {
-      //Item doesn't exist in the cart add it
-
-      cartCtx.addCartItems({
+      // Item doesn't exist in the cart; add it
+      const newCartItem = {
         id: props.product.id,
         head: props.product.title,
         imageSrc: props.product.imageSrc,
         price: props.product.price,
         quantity: 1,
-      });
+      };
+      console.log(typeof newCartItem.quantity);
+
+      // Update the local cart context
+      cartCtx.addCartItems(newCartItem);
+     
     }
   };
 
